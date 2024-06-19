@@ -4,7 +4,7 @@ import random
 import pandas as pd
 import numpy as np
 import matplotlib
-# matplotlib.use('TkAgg')
+matplotlib.use('TkAgg')
 from functions import *
 from visualization import *
 from tabu_search import *
@@ -18,9 +18,10 @@ starting_point = 0
 number_of_vehicles = get_number_of_vehicles()
 max_capacity = 1000
 max_distance = 1600
-iterations = 100
+iterations = 200
 tabu_list_size = 10
 excel_file = 'dane_uzytkownika.xlsx'
+# excel_file = 'dane.xlsx'
 
 df = pd.read_excel(excel_file, usecols=['X', 'Y', 'masa'])
 number_of_points = len(df)

@@ -11,6 +11,24 @@ def save_to_excel(data, filename):
 def on_click(event):
     x = event.x
     y = event.y
+
+    # Get the width and height of the canvas to draw axes
+    width = canvas.winfo_width()
+    height = canvas.winfo_height()
+
+    # # Draw the coordinate system if it's the first click
+    # if not points:
+    #     # Draw X-axis with labels
+    #     canvas.create_line(0, height - 20, width, height - 20, fill="black")
+    #     for i in range(0, width, 50):
+    #         canvas.create_text(i, height - 10, text=str(i), anchor=tk.S)
+    #
+    #     # Draw Y-axis with labels
+    #     canvas.create_line(20, 0, 20, height, fill="black")
+    #     for i in range(height, 0, -50):
+    #         canvas.create_text(10, height - i, text=str(height - i), anchor=tk.E)
+
+
     if not points:
         point = [1, x, y, random.randint(1, 10)]
         canvas.create_oval(x - 5, y - 5, x + 5, y + 5, fill="blue")
@@ -23,7 +41,7 @@ def get_number_of_vehicles():
     root = tk.Tk()
     root.withdraw()
 
-    num_vehicles = simpledialog.askinteger("Liczba pojazdów", "Wpisz liczbę pojazdów:", initialvalue=4)
+    num_vehicles = simpledialog.askinteger("Number of vehicles", "Enter the number of vehicles:", initialvalue=4)
     return num_vehicles
 
 
@@ -47,7 +65,7 @@ def select_points_to_excel():
     canvas.pack()
     canvas.bind("<Button-1>", on_click)
 
-    button = tk.Button(root, text="Save to Excel", command=save_points)
+    button = tk.Button(root, text="Save to Excel", command=lambda: [save_points(), root.destroy()])
     button.pack()
 
     root.mainloop()

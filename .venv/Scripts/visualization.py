@@ -23,6 +23,10 @@ def draw_routes(data_frame, solution, cost, show=False):
         points_x.append(data_frame.iloc[0]['X'])
         points_y.append(data_frame.iloc[0]['Y'])
 
+        # points_y = [-y for y in points_y]
+        # points_y = [1 - y for y in points_y]
+        points_y = [1 - (y - data_frame.iloc[0]['Y']) + data_frame.iloc[0]['Y'] for y in points_y]
+
         # Draw the route with the appropriate color and marker
         ax.plot(points_x, points_y, marker=normal_marker, color=colors[i % len(colors)], label=f'Vehicle {i + 1}')
         # Mark the start/end point with a different color and marker
